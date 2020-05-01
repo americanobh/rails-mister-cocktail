@@ -1,0 +1,71 @@
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <h5><%= link_to "All cocktails", cocktails_path %></h5>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="ml-auto flex">
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search" value="">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                 <a class="btn btn-outline-primary my-2 my-sm-0 ml-2" href="/cocktails/new">Add Cocktail</a>
+              </form>
+
+            </div>
+          </div>
+        </nav>
+
+
+        <div class="container mt-3">
+      <div class="row">
+        <div class="col-12">
+          <h1><%= 'All our cocktails'%> (<%= Cocktail.count %>)</h1>
+        </div>
+      </div>
+
+            <div class="row">
+        <div class="col">
+            <p>All cocktails.</p>
+        </div>
+      </div>
+
+
+
+
+  <div class="flexbox">
+
+      <div class="row">
+
+<% @cocktails.each do |cocktail|  %>
+          <div class="col-4">
+            <div class="flat-card">
+              <div class="flat-card-image" style="background-image: url('data:image/jpeg;base64,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')"></div>
+              <div class="flat-card-content">
+                <div class="flat-card-title">
+                  <h4><%= link_to cocktail.name, cocktail_path(cocktail) %></h4>
+                </div>
+                <p><%= cocktail.name %></p>
+                <% cocktail.doses.each do |dosy| %>
+                 <div class="flex">
+                  <div class="flex">
+                    <i class="material-icons mr-2">people</i>
+                    <span>
+                      <%= dosy.ingredient.name %>
+                    </span>
+                  </div>
+                  <br>
+                  <div class="flex ml-3">
+                    <i class="material-icons mr-2">euro_symbol</i><%= dosy.description %>
+                  </div>
+                  </div>
+                  <br>
+                  <% end %>
+
+              </div>
+              <div class="flat-card-actions">
+                <a href="/cocktails/<%= cocktail.id %>">More info</a>
+                <a class="ml-3 text-warning" href="/cocktails/<%= cocktail.id %>/edit">Edit</a>
+                <a data-confirm="Are you sure?" class="ml-3 text-danger" rel="nofollow" data-method="delete" href="/cocktails/<%= cocktail.id %>">Remove</a>
+              </div>
+            </div>
+          </div>
+
+<% end %>

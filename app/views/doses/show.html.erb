@@ -1,0 +1,15 @@
+<h5><%= link_to "Amerinimous", doses_path %></h5>
+<br><br>
+<h2><%= @dose.name %></h2>
+<br>
+<br><br>
+<%= link_to "Delete #{@dose.name}",
+            dose_path(@dose),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+
+<h4><%= link_to "Edit", edit_dose_path %></h4>
+<h4><%= link_to "Show all doses", doses_path %></h4>
+<h4><%= link_to "Add a new dose", new_cocktail_dose_path(@dose) %></h4>
+
+

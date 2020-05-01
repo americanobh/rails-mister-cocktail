@@ -1,6 +1,21 @@
 class DosesController < ApplicationController
 
-    before_action :set_dose, only: [:show, :edit, :update, :destroy]
+    before_action :set_cocktail, only: [:create, :new, :show, :edit, :update, :destroy]
+
+
+    def new
+      @dose = Dose.new
+
+    end
+
+    def create
+      @dose = Dose.new(dose_params)
+      @dose.cocktail = @cocktail
+      @dose.save!
+    # Will raise ActiveModel::ForbiddenAttributesError
+      redirect_to cocktail_path(@cocktail)
+    end
+
 
     def index
       @doses = Dose.all
@@ -9,22 +24,12 @@ class DosesController < ApplicationController
     def show
     end
 
-    def new
-      @dose = Dose.new
-    end
-
     def destroy
+       @dose = Dose.find(params[:id])
       @dose.destroy
 
       # no need for app/views/doses/destroy.html.erb
-      redirect_to doses_path
-    end
-
-    def create
-      @dose = Dose.new(dose_params)
-      @dose.save
-    # Will raise ActiveModel::ForbiddenAttributesError
-      redirect_to dose_path(@dose)
+      redirect_to cocktail_path(@cocktail)
     end
 
     def edit
@@ -38,12 +43,12 @@ class DosesController < ApplicationController
 
     private
 
-    def set_dose
-      @dose = Dose.find(params[:id])
+    def set_cocktail
+      @cocktail = Cocktail.find(params[:cocktail_id])
     end
 
     def dose_params
-      params.require(:dose).permit(:name)
+      params.require(:dose).permit(:description, :ingredient_id)
     end
 
 end

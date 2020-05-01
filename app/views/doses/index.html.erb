@@ -1,0 +1,12 @@
+<h1><%= 'Doses'%></h1>
+
+<% @doses.each do |t|  %>
+  <div class="flexbox">
+    <li>
+    <h5><%= link_to t.name, dose_path(t) %></h5>
+  </li>
+  </div>
+
+<% end %>
+
+  <h4><%= link_to "+ Add new dose", new_dose_path %><h4>
